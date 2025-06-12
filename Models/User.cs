@@ -19,5 +19,9 @@ namespace CareerGuidancePlatform.Models
         public string PasswordHash { get; set; } = string.Empty;
 
         public string Role { get; set; } = "User";
+
+        public string Career { get; set; } = string.Empty;
+
+        public string Niche { get; set; } = string.Empty;
     }
 }

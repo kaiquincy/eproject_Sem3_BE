@@ -1,4 +1,5 @@
 using CareerGuidancePlatform.Data;
+using CareerGuidancePlatform.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -43,6 +44,8 @@ builder.Services.AddControllers();        // ✅ Cho Web API
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddAuthorization();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IRoadmapService, RoadmapService>();
 
 var app = builder.Build();
 
