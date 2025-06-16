@@ -9,6 +9,7 @@ using System;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 
 
@@ -96,7 +97,9 @@ namespace CareerGuidancePlatform.Controllers
             {
                 new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
                 new Claim(ClaimTypes.Name, user.Username),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim("career", user.Career),   // thêm career
+                new Claim("niche", user.Niche)      // thêm niche
             };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
@@ -133,48 +136,46 @@ namespace CareerGuidancePlatform.Controllers
         }
         
 
-        [HttpPost("me")]
-        public IActionResult Me([FromBody] TokenRequest request)
-        {
-            if (string.IsNullOrWhiteSpace(request.Token))
-                return BadRequest(new { message = "Token is required." });
-
-            try
-            {
-                // Lấy key để validate token
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
-                var handler = new JwtSecurityTokenHandler();
-
-                // Validate token
-                handler.ValidateToken(request.Token, new TokenValidationParameters
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateLifetime = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = _config["Jwt:Issuer"],
-                    ValidAudience = _config["Jwt:Audience"],
-                    IssuerSigningKey = key,
-                    ClockSkew = TimeSpan.Zero // Không cho phép chênh lệch thời gian
-                }, out SecurityToken validatedToken);
-
-                var jwtToken = validatedToken as JwtSecurityToken;
-                var username = jwtToken?.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Name)?.Value;
-
-                if (username == null)
-                    return Unauthorized(new { message = "Invalid token" });
-
-                return Ok(new { username });
-            }
-            catch
-            {
-                return Unauthorized(new { message = "Invalid token" });
-            }
-        }
+        
 
         public class TokenRequest
         {
             public string Token { get; set; }
         }
+
+        // GET api/auth/me
+        [HttpPost("me")]
+        [Authorize]
+        public async Task<IActionResult> Me()
+        {
+            // Lấy claim NameIdentifier (là userId) từ token
+            var userIdClaim = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            if (userIdClaim == null)
+                return Unauthorized(new { message = "Invalid token" });
+
+            if (!int.TryParse(userIdClaim, out var userId))
+                return Unauthorized(new { message = "Invalid user ID in token" });
+
+            // Query trực tiếp vào DB để lấy user
+            var user = await _context.Users
+                .AsNoTracking()
+                .Where(u => u.UserId == userId)
+                .Select(u => new {
+                    u.UserId,
+                    u.Username,
+                    u.FullName,
+                    u.Email,
+                    u.Career,
+                    u.Niche,
+                    u.Role
+                })
+                .FirstOrDefaultAsync();
+
+            if (user == null)
+                return NotFound(new { message = "User not found" });
+
+            return Ok(user);
+        }
+
     }
 }

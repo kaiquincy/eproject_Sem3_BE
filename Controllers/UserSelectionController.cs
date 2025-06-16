@@ -19,17 +19,22 @@ namespace CareerGuidancePlatform.Controllers
             _roadmapService = roadmapService;
         }
 
+        // Helper để parse userId từ claim
+        private int GetUserId()
+        {
+            var claim = User.FindFirst(ClaimTypes.NameIdentifier);
+            if (claim == null)
+                throw new UnauthorizedAccessException("User ID claim not found.");
+            return int.Parse(claim.Value);
+        }
+
         [HttpPost("api/user/selection")]
         public async Task<IActionResult> SaveSelection([FromBody] UserSelectionDto dto)
         {
-            var userIdClaim = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            if (userIdClaim == null) return Unauthorized();
-
-            if (!int.TryParse(userIdClaim, out var userId)) return Unauthorized();
+            var userId = GetUserId();
 
             await _userService.SaveCareerChoiceAsync(userId, dto.Career, dto.Niche);
-            var roadmap = await _roadmapService.GetRoadmapAsync(dto.Career, dto.Niche);
-            return Ok(roadmap);
+            return Ok(new { message = "success" });
         }
     }
 }

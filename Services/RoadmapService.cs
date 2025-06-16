@@ -16,17 +16,20 @@ namespace CareerGuidancePlatform.Services
 
         public async Task<List<RoadmapStepDto>> GetRoadmapAsync(string career, string niche)
         {
+
             return await _context.RoadmapSteps
                 .Where(r => r.Career == career && r.Niche == niche)
                 .OrderBy(r => r.Order)
                 .Select(r => new RoadmapStepDto
                 {
+                    Id = r.Id,
                     Order = r.Order,
                     Phase = r.Phase,
                     Title = r.Title,
                     Detail = r.Detail,
                     EstimatedTime = r.EstimatedTime,
                     ResourceLinks = r.ResourceLinks,
+                    ResourceTitle = r.ResourceTitle,
                     IsOptional = r.IsOptional
                 })
                 .ToListAsync();

@@ -2466,11 +2466,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3\\CareerGuidancePlatform.csproj",
+      "projectUniqueName": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj",
       "projectName": "CareerGuidancePlatform",
-      "projectPath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3\\CareerGuidancePlatform.csproj",
+      "projectPath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3\\obj\\",
+      "outputPath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -2547,7 +2547,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.313/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.314/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

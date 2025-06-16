@@ -46,6 +46,8 @@ builder.Services.AddSession();
 builder.Services.AddAuthorization();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoadmapService, RoadmapService>();
+builder.Services.AddScoped<IProgressService, ProgressService>();
+
 
 var app = builder.Build();
 

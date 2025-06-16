@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Vk6aWsyE7s8=",
+  "dgSpecHash": "31CvTx2/Jsg=",
   "success": true,
-  "projectFilePath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3\\CareerGuidancePlatform.csproj",
+  "projectFilePath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\8.0.4\\microsoft.aspnetcore.authentication.jwtbearer.8.0.4.nupkg.sha512",

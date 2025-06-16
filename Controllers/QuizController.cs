@@ -9,31 +9,31 @@ namespace CareerGuidancePlatform.Controllers
     {
         private readonly Dictionary<string, List<string>> _careerJobRoles = new()
         {
-            ["Software Developer"] = new List<string> {
+            ["Software Development"] = new List<string> {
                 "Web Developer",
                 "Mobile App Developer",
                 "AI/ML Engineer",
                 "Game Developer"
             },
-            ["Graphic Designer"] = new List<string> {
+            ["Design & Creative"] = new List<string> {
                 "UI/UX Designer",
                 "Brand Identity Designer",
                 "Illustrator",
                 "Motion Graphics Designer"
             },
-            ["Marketing Specialist"] = new List<string> {
+            ["Marketing & Communications"] = new List<string> {
                 "Digital Marketer",
                 "SEO Specialist",
                 "Content Strategist",
                 "Social Media Manager"
             },
-            ["Data Analyst"] = new List<string> {
+            ["Data & AI"] = new List<string> {
                 "Business Intelligence Analyst",
                 "Data Scientist",
                 "Product Analyst",
                 "Market Research Analyst"
             },
-            ["Human Resources"] = new List<string> {
+            ["Human Resources & Admin"] = new List<string> {
                 "Recruiter",
                 "HR Generalist",
                 "Training & Development Specialist",
@@ -110,11 +110,11 @@ namespace CareerGuidancePlatform.Controllers
 
             var careerScores = new Dictionary<string, int>
             {
-                ["Software Developer"] = interest + skill * 2 + value + personality,
-                ["Graphic Designer"] = interest * 2 + skill + value * 2 + personality,
-                ["Marketing Specialist"] = interest + skill + value * 2 + personality * 2,
-                ["Data Analyst"] = interest * 2 + skill * 2 + personality,
-                ["Human Resources"] = interest + value * 3 + personality * 2
+                ["Software Development"] = interest + skill * 2 + value + personality,
+                ["Design & Creative"] = interest * 2 + skill + value * 2 + personality,
+                ["Marketing & Communications"] = interest + skill + value * 2 + personality * 2,
+                ["Data & AI"] = interest * 2 + skill * 2 + personality,
+                ["Human Resources & Admin"] = interest + value * 3 + personality * 2
             };
 
             var sortedCareerMatches = careerScores

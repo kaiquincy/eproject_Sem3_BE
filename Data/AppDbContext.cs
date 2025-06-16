@@ -1,31 +1,42 @@
-    using Microsoft.EntityFrameworkCore;
-    using CareerGuidancePlatform.Models;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using CareerGuidancePlatform.Models;
+using System.Text.Json;
 
-    namespace CareerGuidancePlatform.Data
+namespace CareerGuidancePlatform.Data
+{
+    public class AppDbContext : DbContext
     {
-        public class AppDbContext : DbContext
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+
+        public DbSet<User> Users { get; set; }
+
+        // Mentorship Program
+        public DbSet<Mentor> Mentors { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<MeetingRequest> MeetingRequests { get; set; }
+        public DbSet<GroupSession> GroupSessions { get; set; }
+
+        public DbSet<RoadmapStep> RoadmapSteps { get; set; }
+        public DbSet<UserRoadmapProgress> UserRoadmapProgresses { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+            base.OnModelCreating(modelBuilder);
 
-            public DbSet<User> Users { get; set; }
+            // 2) Composite PK và relationship cho UserRoadmapProgress
+            modelBuilder.Entity<UserRoadmapProgress>()
+                .HasKey(p => new { p.UserId, p.StepId });
 
-            // ✅ Thêm các bảng cho Mentorship Program
-            public DbSet<Mentor> Mentors { get; set; }
-            public DbSet<Message> Messages { get; set; }
-            public DbSet<MeetingRequest> MeetingRequests { get; set; }
-            public DbSet<GroupSession> GroupSessions { get; set; }
+            modelBuilder.Entity<UserRoadmapProgress>()
+                .HasOne(p => p.User)
+                .WithMany(u => u.RoadmapProgresses)
+                .HasForeignKey(p => p.UserId);
 
-            public DbSet<RoadmapStep> RoadmapSteps { get; set; }
-
-            protected override void OnModelCreating(ModelBuilder modelBuilder)
-            {
-                base.OnModelCreating(modelBuilder);
-
-                modelBuilder.Entity<RoadmapStep>()
-                    .Property(r => r.ResourceLinks)
-                    .HasConversion(
-                        v => System.Text.Json.JsonSerializer.Serialize(v, (System.Text.Json.JsonSerializerOptions)null!),
-                        v => System.Text.Json.JsonSerializer.Deserialize<List<string>>(v) ?? new List<string>());
-            }
+            modelBuilder.Entity<UserRoadmapProgress>()
+                .HasOne(p => p.RoadmapStep)
+                .WithMany()
+                .HasForeignKey(p => p.StepId);
         }
     }
+}

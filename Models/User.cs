@@ -23,5 +23,7 @@ namespace CareerGuidancePlatform.Models
         public string Career { get; set; } = string.Empty;
 
         public string Niche { get; set; } = string.Empty;
+
+        public ICollection<UserRoadmapProgress> RoadmapProgresses { get; set; }
     }
 }
