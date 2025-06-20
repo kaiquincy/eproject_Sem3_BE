@@ -10,6 +10,6 @@ namespace CareerGuidancePlatform.Models
 
         // Navigation properties
         public User         User        { get; set; }
-        public RoadmapStep  RoadmapStep { get; set; }
+        public PhaseSubstep   Substep  { get; set; }
     }
 }

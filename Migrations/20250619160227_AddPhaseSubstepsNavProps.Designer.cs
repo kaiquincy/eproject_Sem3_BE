@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CareerGuidancePlatform.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250614183356_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250619160227_AddPhaseSubstepsNavProps")]
+    partial class AddPhaseSubstepsNavProps
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,23 +98,20 @@ namespace CareerGuidancePlatform.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("Career")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("Field")
+                    b.Property<string>("Niche")
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Specialization")
-                        .IsRequired()
-                        .HasColumnType("longtext");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
 
                     b.HasKey("MentorId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Mentors");
                 });
@@ -143,6 +140,52 @@ namespace CareerGuidancePlatform.Migrations
                     b.HasKey("MessageId");
 
                     b.ToTable("Messages");
+                });
+
+            modelBuilder.Entity("CareerGuidancePlatform.Models.PhaseSubstep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EstimatedTime")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<bool>("IsOptional")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ResourceTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ResourceUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("RoadmapstepId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoadmapstepId");
+
+                    b.ToTable("phase_substeps");
                 });
 
             modelBuilder.Entity("CareerGuidancePlatform.Models.RoadmapStep", b =>
@@ -248,18 +291,43 @@ namespace CareerGuidancePlatform.Migrations
                     b.Property<DateTime>("CompletedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("SubstepId")
+                        .HasColumnType("int");
+
                     b.HasKey("UserId", "StepId");
 
-                    b.HasIndex("StepId");
+                    b.HasIndex("SubstepId");
 
                     b.ToTable("UserRoadmapProgresses");
                 });
 
-            modelBuilder.Entity("CareerGuidancePlatform.Models.UserRoadmapProgress", b =>
+            modelBuilder.Entity("CareerGuidancePlatform.Models.Mentor", b =>
+                {
+                    b.HasOne("CareerGuidancePlatform.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CareerGuidancePlatform.Models.PhaseSubstep", b =>
                 {
                     b.HasOne("CareerGuidancePlatform.Models.RoadmapStep", "RoadmapStep")
-                        .WithMany()
-                        .HasForeignKey("StepId")
+                        .WithMany("PhaseSubsteps")
+                        .HasForeignKey("RoadmapstepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoadmapStep");
+                });
+
+            modelBuilder.Entity("CareerGuidancePlatform.Models.UserRoadmapProgress", b =>
+                {
+                    b.HasOne("CareerGuidancePlatform.Models.PhaseSubstep", "Substep")
+                        .WithMany("UserProgress")
+                        .HasForeignKey("SubstepId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -269,9 +337,19 @@ namespace CareerGuidancePlatform.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("RoadmapStep");
+                    b.Navigation("Substep");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CareerGuidancePlatform.Models.PhaseSubstep", b =>
+                {
+                    b.Navigation("UserProgress");
+                });
+
+            modelBuilder.Entity("CareerGuidancePlatform.Models.RoadmapStep", b =>
+                {
+                    b.Navigation("PhaseSubsteps");
                 });
 
             modelBuilder.Entity("CareerGuidancePlatform.Models.User", b =>

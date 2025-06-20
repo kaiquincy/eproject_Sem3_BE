@@ -6,18 +6,16 @@ namespace CareerGuidancePlatform.Models
     {
         public int MentorId { get; set; }
 
-        [Required]
-        public string FullName { get; set; } = string.Empty;
+        public int UserId { get; set; } // khóa ngoại      
 
-        [Required]
-        public string Email { get; set; } = string.Empty;
+        public string Career { get; set; } = string.Empty;
 
-        public string Field { get; set; } = string.Empty;
-
-        public string Specialization { get; set; } = string.Empty;
+        public string Niche { get; set; } = string.Empty;
 
         public string Availability { get; set; } = string.Empty;
 
         public string Bio { get; set; } = string.Empty;
+
+        public User? User       { get; set; }
     }
 }

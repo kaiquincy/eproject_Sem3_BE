@@ -20,6 +20,9 @@ namespace CareerGuidancePlatform.Data
         public DbSet<RoadmapStep> RoadmapSteps { get; set; }
         public DbSet<UserRoadmapProgress> UserRoadmapProgresses { get; set; }
 
+        public DbSet<PhaseSubstep> PhaseSubsteps { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -33,10 +36,22 @@ namespace CareerGuidancePlatform.Data
                 .WithMany(u => u.RoadmapProgresses)
                 .HasForeignKey(p => p.UserId);
 
+            // **Substep ↔️ Progress**
             modelBuilder.Entity<UserRoadmapProgress>()
-                .HasOne(p => p.RoadmapStep)
-                .WithMany()
-                .HasForeignKey(p => p.StepId);
+            .HasOne(p => p.Substep)
+            .WithMany(s => s.UserProgress)
+            .HasForeignKey(p => p.StepId);
+
+            // Mapping PhaseSubstep -> RoadmapStep
+            modelBuilder.Entity<PhaseSubstep>()
+              .HasOne(s => s.RoadmapStep)
+              .WithMany(r => r.PhaseSubsteps)     // RoadmapStep có ICollection<PhaseSubstep> PhaseSubsteps
+              .HasForeignKey(s => s.RoadmapstepId);
+
+            modelBuilder.Entity<Mentor>()
+                .HasOne(m => m.User)
+                .WithMany()                // hoặc WithMany(u => u.Mentors) nếu bạn map collection
+                .HasForeignKey(m => m.UserId);
         }
     }
 }

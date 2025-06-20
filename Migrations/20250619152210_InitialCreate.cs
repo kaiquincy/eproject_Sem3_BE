@@ -56,31 +56,6 @@ namespace CareerGuidancePlatform.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Mentors",
-                columns: table => new
-                {
-                    MentorId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    FullName = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Email = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Field = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Specialization = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Availability = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Bio = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Mentors", x => x.MentorId);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
                 name: "Messages",
                 columns: table => new
                 {
@@ -157,19 +132,80 @@ namespace CareerGuidancePlatform.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "phase_substeps",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    RoadmapstepId = table.Column<int>(type: "int", nullable: false),
+                    StepOrder = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Detail = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    EstimatedTime = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ResourceUrl = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    ResourceTitle = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IsOptional = table.Column<bool>(type: "tinyint(1)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_phase_substeps", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_phase_substeps_RoadmapSteps_RoadmapstepId",
+                        column: x => x.RoadmapstepId,
+                        principalTable: "RoadmapSteps",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "Mentors",
+                columns: table => new
+                {
+                    MentorId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Career = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Niche = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Availability = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Bio = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Mentors", x => x.MentorId);
+                    table.ForeignKey(
+                        name: "FK_Mentors_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "UserId",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "UserRoadmapProgresses",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false),
                     StepId = table.Column<int>(type: "int", nullable: false),
-                    CompletedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    CompletedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    RoadmapStepId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_UserRoadmapProgresses", x => new { x.UserId, x.StepId });
                     table.ForeignKey(
-                        name: "FK_UserRoadmapProgresses_RoadmapSteps_StepId",
-                        column: x => x.StepId,
+                        name: "FK_UserRoadmapProgresses_RoadmapSteps_RoadmapStepId",
+                        column: x => x.RoadmapStepId,
                         principalTable: "RoadmapSteps",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -183,9 +219,19 @@ namespace CareerGuidancePlatform.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
-                name: "IX_UserRoadmapProgresses_StepId",
+                name: "IX_Mentors_UserId",
+                table: "Mentors",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_phase_substeps_RoadmapstepId",
+                table: "phase_substeps",
+                column: "RoadmapstepId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoadmapProgresses_RoadmapStepId",
                 table: "UserRoadmapProgresses",
-                column: "StepId");
+                column: "RoadmapStepId");
         }
 
         /// <inheritdoc />
@@ -202,6 +248,9 @@ namespace CareerGuidancePlatform.Migrations
 
             migrationBuilder.DropTable(
                 name: "Messages");
+
+            migrationBuilder.DropTable(
+                name: "phase_substeps");
 
             migrationBuilder.DropTable(
                 name: "UserRoadmapProgresses");

@@ -4,6 +4,7 @@ using CareerGuidancePlatform.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CareerGuidancePlatform.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250619152210_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -139,52 +142,6 @@ namespace CareerGuidancePlatform.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("CareerGuidancePlatform.Models.PhaseSubstep", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Detail")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("EstimatedTime")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("varchar(50)");
-
-                    b.Property<bool>("IsOptional")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("ResourceTitle")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("ResourceUrl")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("RoadmapstepId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StepOrder")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoadmapstepId");
-
-                    b.ToTable("phase_substeps");
-                });
-
             modelBuilder.Entity("CareerGuidancePlatform.Models.RoadmapStep", b =>
                 {
                     b.Property<int>("Id")
@@ -288,11 +245,60 @@ namespace CareerGuidancePlatform.Migrations
                     b.Property<DateTime>("CompletedAt")
                         .HasColumnType("datetime(6)");
 
+                    b.Property<int>("RoadmapStepId")
+                        .HasColumnType("int");
+
                     b.HasKey("UserId", "StepId");
 
-                    b.HasIndex("StepId");
+                    b.HasIndex("RoadmapStepId");
 
                     b.ToTable("UserRoadmapProgresses");
+                });
+
+            modelBuilder.Entity("PhaseSubstep", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Detail")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EstimatedTime")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("varchar(50)");
+
+                    b.Property<bool>("IsOptional")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<string>("ResourceTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ResourceUrl")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("RoadmapstepId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StepOrder")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoadmapstepId");
+
+                    b.ToTable("phase_substeps");
                 });
 
             modelBuilder.Entity("CareerGuidancePlatform.Models.Mentor", b =>
@@ -306,22 +312,11 @@ namespace CareerGuidancePlatform.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CareerGuidancePlatform.Models.PhaseSubstep", b =>
-                {
-                    b.HasOne("CareerGuidancePlatform.Models.RoadmapStep", "RoadmapStep")
-                        .WithMany("PhaseSubsteps")
-                        .HasForeignKey("RoadmapstepId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("RoadmapStep");
-                });
-
             modelBuilder.Entity("CareerGuidancePlatform.Models.UserRoadmapProgress", b =>
                 {
-                    b.HasOne("CareerGuidancePlatform.Models.PhaseSubstep", "Substep")
-                        .WithMany("UserProgress")
-                        .HasForeignKey("StepId")
+                    b.HasOne("CareerGuidancePlatform.Models.RoadmapStep", "RoadmapStep")
+                        .WithMany()
+                        .HasForeignKey("RoadmapStepId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -331,19 +326,20 @@ namespace CareerGuidancePlatform.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Substep");
+                    b.Navigation("RoadmapStep");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("CareerGuidancePlatform.Models.PhaseSubstep", b =>
+            modelBuilder.Entity("PhaseSubstep", b =>
                 {
-                    b.Navigation("UserProgress");
-                });
+                    b.HasOne("CareerGuidancePlatform.Models.RoadmapStep", "RoadmapStep")
+                        .WithMany()
+                        .HasForeignKey("RoadmapstepId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("CareerGuidancePlatform.Models.RoadmapStep", b =>
-                {
-                    b.Navigation("PhaseSubsteps");
+                    b.Navigation("RoadmapStep");
                 });
 
             modelBuilder.Entity("CareerGuidancePlatform.Models.User", b =>

@@ -18,5 +18,8 @@ namespace CareerGuidancePlatform.Models
         public string ResourceTitle { get; set; } = string.Empty;
 
         public bool IsOptional { get; set; }
+
+                // Thêm collection navigation
+        public ICollection<PhaseSubstep> PhaseSubsteps { get; set; }
     }
 }

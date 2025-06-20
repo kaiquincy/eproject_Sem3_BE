@@ -109,7 +109,7 @@ namespace CareerGuidancePlatform.Controllers
                 issuer: _config["Jwt:Issuer"],
                 audience: _config["Jwt:Audience"],
                 claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(double.Parse(_config["Jwt:ExpireMinutes"])),
+                expires: DateTime.UtcNow.AddYears(1),
                 signingCredentials: creds
             );
 
