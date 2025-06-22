@@ -12,6 +12,11 @@ namespace CareerGuidancePlatform.Data
 
         public DbSet<User> Users { get; set; }
 
+        // ✅ Add missing DbSet for Job & ApplicationTracker
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<ApplicationTracker> ApplicationTrackers { get; set; }
+        public DbSet<EmployerReview> EmployerReviews { get; set; }
+        public DbSet<Company> Companies { get; set; }
         // Mentorship Program
         public DbSet<Mentor> Mentors { get; set; }
         public DbSet<Message> Messages { get; set; }
@@ -24,7 +29,7 @@ namespace CareerGuidancePlatform.Data
         public DbSet<PhaseSubstep> PhaseSubsteps { get; set; }
 
         public DbSet<UserCalendar> UserCalendars { get; set; }
-         
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

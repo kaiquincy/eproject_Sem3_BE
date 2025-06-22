@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj": {}
+    "D:\\HK3\\Project\\OkOk\\BE_22_6\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj": {}
   },
   "projects": {
-    "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj": {
+    "D:\\HK3\\Project\\OkOk\\BE_22_6\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj",
+        "projectUniqueName": "D:\\HK3\\Project\\OkOk\\BE_22_6\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj",
         "projectName": "CareerGuidancePlatform",
-        "projectPath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\FPT APTECH\\SEMESTER 3\\eproject_Sem3_BE\\obj\\",
+        "projectPath": "D:\\HK3\\Project\\OkOk\\BE_22_6\\eproject_Sem3_BE\\CareerGuidancePlatform.csproj",
+        "packagesPath": "C:\\Users\\Tuan\\.nuget\\packages\\",
+        "outputPath": "D:\\HK3\\Project\\OkOk\\BE_22_6\\eproject_Sem3_BE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Tuan\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
@@ -88,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.314/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
