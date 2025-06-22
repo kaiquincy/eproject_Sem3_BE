@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using CareerGuidancePlatform.Models;
 using System.Text.Json;
+using CareerGuidancePlatform.Entities;
 
 namespace CareerGuidancePlatform.Data
 {
@@ -22,7 +23,8 @@ namespace CareerGuidancePlatform.Data
 
         public DbSet<PhaseSubstep> PhaseSubsteps { get; set; }
 
-
+        public DbSet<UserCalendar> UserCalendars { get; set; }
+         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
