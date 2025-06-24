@@ -37,4 +37,16 @@ public class CompanyController : ControllerBase
     {
         return Ok(await _context.Companies.ToListAsync());
     }
+
+    // ✅ GET /api/company/{id}
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetCompanyById(int id)
+    {
+        var company = await _context.Companies.FindAsync(id);
+        if (company == null)
+        {
+            return NotFound(); // Trả 404 nếu không tìm thấy
+        }
+        return Ok(company);
+    }
 }

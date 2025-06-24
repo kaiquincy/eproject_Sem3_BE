@@ -62,4 +62,37 @@ public class JobController : ControllerBase
         await _context.SaveChangesAsync();
         return Ok(job);
     }
+
+    // GET: api/job/by-category/{category}
+    [HttpGet("by-category/{category}")]
+    public async Task<IActionResult> GetJobsByCategory(string category)
+    {
+        // chuẩn hoá param về lowercase
+        var normalized = category.Trim().ToLower();
+
+        var jobs = await _context.Jobs
+            // Include ở đây để EF biết phải join Company
+            .Include(j => j.Company)
+            // So sánh sau khi ToLower(), EF Core có thể dịch ToLower() sang SQL
+            .Where(j => j.Category.ToLower() == normalized)
+            .Select(j => new JobWithCompanyNameDto
+            {
+                Id           = j.Id,
+                Title        = j.Title,
+                Position     = j.Position,
+                Location     = j.Location,
+                Salary       = j.Salary,
+                Description  = j.Description,
+                Url          = j.Url,
+                Category     = j.Category,
+                PostedDate   = j.PostedDate,
+                CompanyName  = j.Company.Name
+            })
+            .ToListAsync();
+
+        return Ok(jobs);
+    }
+
 }
+
+
