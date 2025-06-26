@@ -2,6 +2,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CareerGuidancePlatform.Models
 {
+
+    public enum MentorStatus
+    {
+        Pending,
+        Approved,
+        Rejected
+    }
     public class Mentor
     {
         public int MentorId { get; set; }
@@ -16,6 +23,9 @@ namespace CareerGuidancePlatform.Models
 
         public string Bio { get; set; } = string.Empty;
 
-        public User? User       { get; set; }
+        public MentorStatus Status { get; set; }    // thêm
+        public DateTime RequestedAt { get; set; }   // thêm
+
+        public User? User { get; set; }
     }
 }

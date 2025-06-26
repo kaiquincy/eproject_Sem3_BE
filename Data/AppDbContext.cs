@@ -20,6 +20,9 @@ namespace CareerGuidancePlatform.Data
         // Mentorship Program
         public DbSet<Mentor> Mentors { get; set; }
         public DbSet<Message> Messages { get; set; }
+
+        public DbSet<Resume> Resumes { get; set; }
+
         public DbSet<MeetingRequest> MeetingRequests { get; set; }
         public DbSet<GroupSession> GroupSessions { get; set; }
 

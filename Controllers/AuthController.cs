@@ -71,7 +71,8 @@ namespace CareerGuidancePlatform.Controllers
                 FullName = request.FullName,
                 Email = request.Email,
                 PasswordHash = HashPassword(request.Password),
-                Role = "User"
+                Role = "User",
+                CreatedAt = DateTime.UtcNow
             };
 
             _context.Users.Add(user);

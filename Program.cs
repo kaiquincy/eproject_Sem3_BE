@@ -48,6 +48,7 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRoadmapService, RoadmapService>();
 builder.Services.AddScoped<IProgressService, ProgressService>();
 builder.Services.AddScoped<IPhaseSubstepService, PhaseSubstepService>();
+builder.Services.AddScoped<IResumeService, ResumeService>();
 
 
 

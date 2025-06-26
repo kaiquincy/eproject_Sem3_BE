@@ -24,6 +24,8 @@ namespace CareerGuidancePlatform.Models
 
         public string Niche { get; set; } = string.Empty;
 
+        public DateTime CreatedAt { get; set; }
+
         public ICollection<UserRoadmapProgress> RoadmapProgresses { get; set; }
     }
 }
