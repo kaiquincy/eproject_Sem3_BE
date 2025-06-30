@@ -40,17 +40,23 @@ git clone https://github.com/kaiquincy/eproject_Sem3_BE.git
 git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
 ```
 
-### 2. Backend Setup
+### 2. Backend Setup (.NET + XAMPP MySQL)
+
+#### 1. Start XAMPP
+Launch Apache and MySQL via the XAMPP control panel.
+
+#### 2. Create a Database
+In phpMyAdmin, create a new database named ```bashcareer_guidance_db.```
 
 ```bash
 cd eproject_Sem3_BE
-dotnet restore             # Setting package .NET
+dotnet restore             # Install package .NET
 dotnet run                 # Start API on http://localhost:5037
 ```
 ### 3. Frontend Setup
 
 ```bash
 cd ../eproject_Sem3_FE
-npm install                # cài các dependency React
+npm install                # Install dependency React
 npm start
 ```
