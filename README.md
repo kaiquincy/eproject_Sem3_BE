@@ -4,10 +4,11 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 
 ## 🚀 Demo
 
-![Hero Section](https://github.com/user-attachments/assets/e6753313-d2d8-4581-bd79-fe78eddf0d1d)
+![Black and Purple Modern Technology Presentation (13)](https://github.com/user-attachments/assets/2840a812-bdcc-4e49-b27c-77701cf0d35e)
+*Hero Section.*
 
 
-![Home Dashboard](https://github.com/user-attachments/assets/fb3b8efc-9713-452d-a277-94e67ba32d94)
+![Home Dashboard]()
 *Interactive overview of your career goals, progress and recommended actions.*
 
 ![Career Assessment](docs/demo/career-assessment.png)  
