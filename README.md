@@ -14,11 +14,11 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 ![Black and Purple Modern Technology Presentation (16)](https://github.com/user-attachments/assets/af9cfc7b-139d-48f4-a2bc-5b099e6ee4b7)
 <p align="center"><em>Quick quizzes generate your Career Compatibility Score.</em></p>
 
-![Career Map](docs/demo/career-map.png)  
-*Visual roadmap showing skills, experience and milestones.*
+![Black and Purple Modern Technology Presentation (18)](https://github.com/user-attachments/assets/6f104213-f71c-41dc-8255-d1c38db1eaf0)
+<p align="center"><em>CV Builder tool.</em></p>
 
 ![Black and Purple Modern Technology Presentation (17)](https://github.com/user-attachments/assets/7401ff46-b0b3-44d7-ba4f-fd244d733d81)
-*Built-in messaging and video calls to connect with industry mentors, users, admins, and more....*
+<p align="center"><em>Built-in messaging and video calls to connect with industry mentors, users, admins, and more....</em></p>
 
 ## ✨ Features
 
@@ -34,5 +34,6 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 1. **Clone**  
    ```bash
    git clone https://github.com/kaiquincy/eproject_Sem3_BE.git
+   
    cd career-guidance
 2. **Start**
