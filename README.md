@@ -56,7 +56,9 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 dotnet run                 # Start API on http://localhost:5037
 ```
-*(Sample data will automacally be added when execute ```dotnet run```)*
+
+#### 4. Account for testing
+*(Sample data will automacally be added when execute ```dotnet run```, you can check sql files in ```/data/seed/```)*
 ```bash
 usename: admin
 password: 123
