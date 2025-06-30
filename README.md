@@ -48,11 +48,15 @@ Launch Apache and MySQL via the XAMPP control panel.
 #### 2. Create a Database
 In phpMyAdmin, create a new database named ```bashcareer_guidance_db.```
 
+#### 3. Migrations & Run
 ```bash
 cd eproject_Sem3_BE
 dotnet restore             # Install package .NET
+dotnet ef migrations add InitialCreate
+dotnet ef database update
 dotnet run                 # Start API on http://localhost:5037
 ```
+
 ### 3. Frontend Setup
 
 ```bash
