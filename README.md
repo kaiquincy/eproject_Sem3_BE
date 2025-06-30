@@ -56,10 +56,12 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 dotnet run                 # Start API on http://localhost:5037
 ```
-*(Sample data will automacally be added when execute ```dotnet run```
+*(Sample data will automacally be added when execute ```dotnet run```)*
+```bash
 usename: admin
 password: 123
-)*
+```
+
 ### 3. Frontend Setup
 
 ```bash
