@@ -4,8 +4,8 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 
 ## 🚀 Demo
 
-![Black and Purple Modern Technology Presentation (13)](https://github.com/user-attachments/assets/2840a812-bdcc-4e49-b27c-77701cf0d35e)
-*Hero Section.*
+![Black and Purple Modern Technology Presentation (14)](https://github.com/user-attachments/assets/50b5a1ad-1018-4a8d-8174-87330ea10ca8)
+<p align="center"><em>Hero Section.</em></p>
 
 
 ![Home Dashboard]()
