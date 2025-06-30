@@ -46,7 +46,7 @@ git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
 Launch Apache and MySQL via the XAMPP control panel.
 
 #### 2. Create a Database
-In phpMyAdmin, create a new database named ```bashcareer_guidance_db.```
+In phpMyAdmin, create a new database named ```career_guidance```
 
 #### 3. Migrations & Run
 ```bash
@@ -56,7 +56,10 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 dotnet run                 # Start API on http://localhost:5037
 ```
-
+*(Sample data will automacally be added when execute ```dotnet run```
+usename: admin
+password: 123
+)*
 ### 3. Frontend Setup
 
 ```bash
