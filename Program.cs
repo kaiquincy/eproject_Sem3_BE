@@ -8,7 +8,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 builder.WebHost.UseUrls("http://localhost:5037");
 
-// 🔗 Cấu hình chuỗi kết nối MySQL
+// 🔗 Setting connection to MySQL
 var connectionString = "server=127.0.0.1;port=3306;database=career_guidance;user=root;password=;";
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -53,6 +53,46 @@ builder.Services.AddScoped<IResumeService, ResumeService>();
 
 
 var app = builder.Build();
+
+
+// 2. Áp migration & seed dữ liệu có điều kiện
+using(var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    // Áp migration
+    db.Database.Migrate();
+
+    // Thư mục chứa các file seed
+    var seedFolder = Path.Combine(app.Environment.ContentRootPath, "Data", "Seed");
+
+    if (Directory.Exists(seedFolder))
+    {
+        var sqlFiles = Directory.GetFiles(seedFolder, "*.sql")
+                                .OrderBy(path => path);
+
+        foreach(var file in sqlFiles)
+        {
+            var fileName = Path.GetFileName(file);            // e.g. "Users.sql"
+            bool shouldSeed = fileName switch
+            {
+                "users.sql" => !db.Users.Any(),
+                "companies.sql" => !db.Companies.Any(),
+                "messages.sql" => !db.Messages.Any(),
+                "phase_substeps.sql" => !db.Messages.Any(),
+                "roadmapsteps.sql" => !db.RoadmapSteps.Any(),
+                "jobs.sql" =>  !db.Jobs.Any(),
+                _ => false
+            };
+
+            if (!shouldSeed)
+                continue;   // đã có data → bỏ qua
+
+            var sql = File.ReadAllText(file);
+            db.Database.ExecuteSqlRaw(sql);
+        }
+    }
+}
 
 // 📁 Cho phép dùng file tĩnh (nếu có frontend Razor, HTML, JS,...)
 app.UseStaticFiles();

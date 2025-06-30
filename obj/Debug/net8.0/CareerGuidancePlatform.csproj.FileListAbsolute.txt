@@ -584,3 +584,9 @@ D:\HK3\Project\OkOk\BE_22_6\eproject_Sem3_BE\obj\Debug\net8.0\refint\CareerGuida
 D:\HK3\Project\OkOk\BE_22_6\eproject_Sem3_BE\obj\Debug\net8.0\CareerGuidancePlatform.pdb
 D:\HK3\Project\OkOk\BE_22_6\eproject_Sem3_BE\obj\Debug\net8.0\CareerGuidancePlatform.genruntimeconfig.cache
 D:\HK3\Project\OkOk\BE_22_6\eproject_Sem3_BE\obj\Debug\net8.0\ref\CareerGuidancePlatform.dll
+D:\Users\FPT APTECH\SEMESTER 3\eproject_Sem3_BE\bin\Debug\net8.0\Data\Seed\companies.sql
+D:\Users\FPT APTECH\SEMESTER 3\eproject_Sem3_BE\bin\Debug\net8.0\Data\Seed\jobs.sql
+D:\Users\FPT APTECH\SEMESTER 3\eproject_Sem3_BE\bin\Debug\net8.0\Data\Seed\messages.sql
+D:\Users\FPT APTECH\SEMESTER 3\eproject_Sem3_BE\bin\Debug\net8.0\Data\Seed\phase_substeps.sql
+D:\Users\FPT APTECH\SEMESTER 3\eproject_Sem3_BE\bin\Debug\net8.0\Data\Seed\roadmapsteps.sql
+D:\Users\FPT APTECH\SEMESTER 3\eproject_Sem3_BE\bin\Debug\net8.0\Data\Seed\users.sql
