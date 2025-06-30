@@ -4,6 +4,9 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 
 ## 🚀 Demo
 
+![Hero Section](https://github.com/user-attachments/assets/e6753313-d2d8-4581-bd79-fe78eddf0d1d)
+
+
 ![Home Dashboard](https://github.com/user-attachments/assets/fb3b8efc-9713-452d-a277-94e67ba32d94)
 *Interactive overview of your career goals, progress and recommended actions.*
 
