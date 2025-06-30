@@ -31,9 +31,17 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 
 ## ⚡ Quick Start
 
-1. **Clone**  
-   ```bash
-   git clone https://github.com/kaiquincy/eproject_Sem3_BE.git
-   
-   cd career-guidance
-2. **Start**
+### 1. Clone Repositories
+
+```bash
+# Clone backend API
+git clone https://github.com/kaiquincy/eproject_Sem3_BE.git
+# Clone frontend app
+git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
+
+### 2. Backend Setup
+
+```bash
+cd career-guidance-backend
+dotnet restore             # Setting package .NET
+dotnet run                 # Start API on http://localhost:5000
