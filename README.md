@@ -8,17 +8,17 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 <p align="center"><em>Hero Section.</em></p>
 
 
-![Home Dashboard]()
+![Black and Purple Modern Technology Presentation (15)](https://github.com/user-attachments/assets/ce1a909f-d396-4bbf-8c8d-4da7f3586a3e)
 <p align="center"><em>Interactive overview of your career goals, progress and recommended actions.</em></p>
 
-![Career Assessment](docs/demo/career-assessment.png)  
-*Quick quizzes generate your Career Compatibility Score.*
+![Black and Purple Modern Technology Presentation (16)](https://github.com/user-attachments/assets/af9cfc7b-139d-48f4-a2bc-5b099e6ee4b7)
+<p align="center"><em>Quick quizzes generate your Career Compatibility Score.</em></p>
 
 ![Career Map](docs/demo/career-map.png)  
 *Visual roadmap showing skills, experience and milestones.*
 
-![Mentor Chat](docs/demo/mentor-chat.png)  
-*Built-in messaging and video calls to connect with industry mentors.*
+![Black and Purple Modern Technology Presentation (17)](https://github.com/user-attachments/assets/7401ff46-b0b3-44d7-ba4f-fd244d733d81)
+*Built-in messaging and video calls to connect with industry mentors, users, admins, and more....*
 
 ## ✨ Features
 
