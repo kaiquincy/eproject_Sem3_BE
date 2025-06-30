@@ -38,6 +38,7 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 git clone https://github.com/kaiquincy/eproject_Sem3_BE.git
 # Clone frontend app
 git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
+```
 
 ### 2. Backend Setup
 
@@ -45,3 +46,4 @@ git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
 cd career-guidance-backend
 dotnet restore             # Setting package .NET
 dotnet run                 # Start API on http://localhost:5000
+```
