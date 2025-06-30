@@ -9,7 +9,7 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 
 
 ![Home Dashboard]()
-*Interactive overview of your career goals, progress and recommended actions.*
+<p align="center"><em>Interactive overview of your career goals, progress and recommended actions.</em></p>
 
 ![Career Assessment](docs/demo/career-assessment.png)  
 *Quick quizzes generate your Career Compatibility Score.*
