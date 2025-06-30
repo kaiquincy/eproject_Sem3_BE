@@ -44,6 +44,7 @@ git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
 
 #### 1. Start XAMPP
 Launch Apache and MySQL via the XAMPP control panel.
+Config your MySQL in ```program.cs```
 
 #### 2. Create a Database
 In phpMyAdmin, create a new database named ```career_guidance```
