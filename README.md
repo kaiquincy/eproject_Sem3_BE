@@ -43,7 +43,14 @@ git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
 ### 2. Backend Setup
 
 ```bash
-cd career-guidance-backend
+cd eproject_Sem3_BE
 dotnet restore             # Setting package .NET
-dotnet run                 # Start API on http://localhost:5000
+dotnet run                 # Start API on http://localhost:5037
+```
+### 3. Frontend Setup
+
+```bash
+cd ../eproject_Sem3_FE
+npm install                # cài các dependency React
+npm start
 ```
