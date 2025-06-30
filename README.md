@@ -37,7 +37,7 @@ A user‐friendly web app to help you discover, plan and advance your career thr
 # Clone backend API
 git clone https://github.com/kaiquincy/eproject_Sem3_BE.git
 # Clone frontend app
-git clone https://github.com/kaiquincy/eproject_Sem3_FE.git
+git clone https://github.com/kaiquincy/eproject_Sem3.git
 ```
 
 ### 2. Backend Setup (.NET + XAMPP MySQL)
@@ -68,7 +68,7 @@ password: 123
 ### 3. Frontend Setup
 
 ```bash
-cd ../eproject_Sem3_FE
+cd ../eproject_Sem3
 npm install                # Install dependency React
-npm start
+npm start                  # http://localhost:3000
 ```
